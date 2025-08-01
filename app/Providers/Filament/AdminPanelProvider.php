@@ -29,12 +29,12 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->navigationItems([
                 
-                NavigationItem::make('Categories')
-                    ->url(fn (): string => CategoryResource::getUrl())
-                    ->icon('heroicon-o-tag'),
-                NavigationItem::make('Tags')
-                    ->url(fn (): string => TagResource::getUrl())
-                    ->icon('heroicon-o-tag'),
+                // NavigationItem::make('Categories')
+                //     ->url(fn (): string => CategoryResource::getUrl())
+                //     ->icon('heroicon-o-tag'),
+                // NavigationItem::make('Tags')
+                //     ->url(fn (): string => TagResource::getUrl())
+                //     ->icon('heroicon-o-tag'),
             ])
             ->default()
             ->id('admin')

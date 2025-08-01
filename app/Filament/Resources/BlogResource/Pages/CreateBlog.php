@@ -9,4 +9,7 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBlog extends CreateRecord
 {
     protected static string $resource = BlogResource::class;
+
 }
+
+

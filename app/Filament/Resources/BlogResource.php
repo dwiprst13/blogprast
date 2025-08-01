@@ -7,6 +7,10 @@ use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Filament\Forms\Components\IconColumn;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,13 +28,27 @@ class BlogResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
+                ->label('Judul')
+                ->afterStateUpdated(function (Get $get, Set $set, ?string $state) { // Ubah type hinting
+                    if (! $get('is_slug_changed_manually') && filled($state)) {
+                        $set('slug', Str::slug($state));
+                    }
+                })
+                ->reactive()
+                ->required()
+                ->columnSpanFull(),
                 
                 Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(Blog::class, 'slug', ignoreRecord: true),
+                ->label('Slug (URL)')
+                ->required()
+                ->unique(ignoreRecord: true)
+                 ->afterStateUpdated(function (Set $set) { // Ubah menjadi closure explicit
+                    $set('is_slug_changed_manually', true);
+                }),
+
+                Forms\Components\Toggle::make('is_slug_changed_manually')
+                    ->hidden()
+                    ->default(false),
                 
                 Forms\Components\RichEditor::make('body')
                     ->required(),
@@ -40,7 +58,7 @@ class BlogResource extends Resource
                     ->maxSize(2048)
                     ->nullable(),
                     
-                Forms\Components\Textarea::make('exceprt')
+                Forms\Components\Textarea::make('excerpt')
                     ->nullable(),
                 
                 Forms\Components\Toggle::make('published')
@@ -65,25 +83,22 @@ class BlogResource extends Resource
             ->columns([
 
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
                     ->searchable()
+                    ->sortable()
+                    ->limit(25),
+                
+                Tables\Columns\TextColumn::make('published')
+                    ->label('Status')
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Publish' : 'Draft')
                     ->sortable(),
-                
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable()
-                    ->sortable(),
-                
-                Tables\Columns\TextColumn::make('excerpt')
-                    ->limit(50),
-                
-                Tables\Columns\TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
-                
+                                
                 Tables\Columns\TextColumn::make('category.name')
-                    ->label('Category')
+                    ->label('Kategori')
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable(),
             ])->filters([

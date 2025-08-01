@@ -40,7 +40,8 @@ Route::middleware('auth')->group(function () {
 //     ->except(['create', 'edit'])
 //     ->names('posts');
 
-Route::get('blog', [BlogController::class, 'index'])->name('posts.index');
+Route::get('blog', [BlogController::class, 'index'])->name('blog');
+Route::get('blog/{slug}', [BlogController::class, 'show'])->name('posts.show');
 // Route::get('newestblog', [BlogController::class, 'newestblog'])->name('blogs.newestblog');
 
 
