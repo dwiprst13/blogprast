@@ -11,6 +11,10 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use App\Filament\Resources\BlogResource;
+use App\Filament\Resources\CategoryResource;
+use App\Filament\Resources\TagResource;
+use Filament\Navigation\NavigationItem;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -23,6 +27,15 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->navigationItems([
+                
+                NavigationItem::make('Categories')
+                    ->url(fn (): string => CategoryResource::getUrl())
+                    ->icon('heroicon-o-tag'),
+                NavigationItem::make('Tags')
+                    ->url(fn (): string => TagResource::getUrl())
+                    ->icon('heroicon-o-tag'),
+            ])
             ->default()
             ->id('admin')
             ->path('admin')
