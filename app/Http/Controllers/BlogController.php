@@ -3,44 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $blogs = Blog::with(['user', 'tags', 'category']) // Eager load relasi
-            ->latest() // Urutkan dari terbaru
+        $blogs = Blog::with(['user', 'tags', 'category'])
+            ->where('published', true)
+            ->latest()
             ->get();
 
-        return Inertia::render('User/Blog', ['blogs' => $blogs]);
+        return Inertia::render('User/Blog', [
+            'blogs' => $blogs
+        ]);
     }
 
     public function newestblog()
     {
-        $blogs = Blog::with(['user', 'tags', 'category']) // Eager load relasi
-            ->latest() // Urutkan dari terbaru
-            ->take(5) // Ambil 3 blog terbaru
+        $blogs = Blog::with(['user', 'tags', 'category'])
+            ->where('published', true) 
+            ->latest() //
+            ->take(5) // 
             ->get();
 
         return Inertia::render('User/Blogs/NewestBlog', ['blogs' => $blogs]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return Inertia::render('Post/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -64,37 +60,59 @@ class BlogController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Blog $post)
+    public function show($slug)
     {
-        $post->load(['user', 'category', 'tags']);
-        return Inertia::render('Post/Show', [
-            'post' => $post,
+        $blog = Blog::with('author')->where('slug', $slug)->firstOrFail();
+
+        $comments = Comment::with(['author', 'replies.author'])
+            ->where('blog_id', $blog->id)
+            ->whereNull('parent_id')
+            ->latest()
+            ->get()
+            ->map(fn($comment) => $this->transformComment($comment));
+
+        return Inertia::render('User/Detail', [
+            'blog' => $blog,
+            'comments' => $comments,
         ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Rekursif transformasi komentar dan reply
      */
-    public function edit(Post $post)
+    private function transformComment($comment, $depth = 0, $maxDepth = 3)
+    {
+        return [
+            'id' => $comment->id,
+            'content' => $comment->content,
+            'createdAt' => $comment->created_at->toIso8601String(),
+            'likes' => $comment->likes ?? 0,
+            'isLiked' => false,
+            'canEdit' => auth()->id() === $comment->user_id,
+            'canDelete' => auth()->id() === $comment->user_id,
+            'author' => [
+                'name' => $comment->author->name ?? 'Anonim',
+                'avatar' => null,
+                'isVerified' => true,
+            ],
+            'replies' => $depth < $maxDepth
+                ? $comment->replies->map(fn($reply) => $this->transformComment($reply, $depth + 1))
+                : [],
+        ];
+    }
+
+
+    public function edit(Blog $post)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Blog $post)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Post $post)
+    public function destroy(Blog $post)
     {
         //
     }

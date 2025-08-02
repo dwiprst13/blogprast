@@ -2,8 +2,11 @@ import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
 import HeaderAccDropdown from "../moleculs/HeaderAccDropdown";
 import NavLink from "../atoms/NavLink";
+import ThemeToggle from "../atoms/ThemeToggle";
+import useTheme from "../../Hooks/useTheme";
 
-export default function Header({ auth, className = "" }) {
+export default function Header({ auth, className = "", ...props }) {
+    const { theme, toggleTheme } = useTheme();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const user = usePage().props.auth.user;
 
@@ -15,7 +18,7 @@ export default function Header({ auth, className = "" }) {
             label: "Beranda",
             active: route().current("home"),
         },
-        { href: route("blog"), label: "Blog", active: route().current("blog") },
+        { href: route("blog"), label: "Blog", active: route().current("blog") || route().current("blog.detail") },
         {
             href: route("tentang"),
             label: "Tentang",
@@ -47,6 +50,7 @@ export default function Header({ auth, className = "" }) {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
+                        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
                         <nav className="flex space-x-6">
                             {navItems.map((item) => (
                                 <NavLink
@@ -169,6 +173,17 @@ export default function Header({ auth, className = "" }) {
                                 </Link>
                             </div>
                         )}
+                    </div>
+                    <div className="w-full flex mt-8 flex-col space-y-5">
+                        <p className="text-center dark:text-white">
+                            Kami hadir dalam dua tema
+                        </p>
+                        <div className="flex justify-center">
+                            <ThemeToggle
+                                theme={theme}
+                                toggleTheme={toggleTheme}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

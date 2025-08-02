@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ComentResource\Pages;
+namespace App\Filament\Resources\CommentResource\Pages;
 
-use App\Filament\Resources\ComentResource;
+use App\Filament\Resources\CommentResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditComent extends EditRecord
+class EditComment extends EditRecord
 {
-    protected static string $resource = ComentResource::class;
+    protected static string $resource = CommentResource::class;
 
     protected function getHeaderActions(): array
     {

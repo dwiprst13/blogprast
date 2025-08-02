@@ -1,6 +1,6 @@
 import { Head } from "@inertiajs/react";
 import BlogBanner from "@/Components/organisms/BlogBanner";
-import NewestBlog from "../../Components/organisms/NewestBlog";
+import NewestBlog from "./Part/NewestBlog";
 import MainLayout from "@/Layouts/MainLayout";
 
 export default function Dashboard({ auth, newestBlogs }) {

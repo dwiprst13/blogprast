@@ -18,14 +18,6 @@ class Blog extends Model
         'category_id',
         'tags',
     ];
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($blog) {
-            $blog->user_id = auth()->id();
-        });
-    }
     protected $casts = [
         'published' => 'boolean',
         'published_at' => 'datetime',
@@ -42,5 +34,9 @@ class Blog extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-    
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
