@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -21,9 +22,9 @@ use Inertia\Inertia;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-Route::get('/portofolio', function () {
-    return Inertia::render('User/Portofolio');
-})->name('portofolio');
+Route::get('/tentang', function ( ) {
+    return Inertia::render('User/Tentang');
+})->name('tentang');
 
 Route::get('/profil', function () {
     return Inertia::render('User/Profile');
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
 //     ->names('posts');
 
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
+Route::get('kontak', [KontakController::class, 'index'])->name('kontak');
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('posts.show');
 // Route::get('newestblog', [BlogController::class, 'newestblog'])->name('blogs.newestblog');
 

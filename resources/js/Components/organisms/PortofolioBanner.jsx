@@ -1,168 +1,248 @@
-import React, { useState, useEffect } from 'react';
 
-const PortofolioBanner = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [particles, setParticles] = useState([]);
+import {
+    SiReact,
+    SiLaravel,
+    SiJavascript,
+    SiPhp,
+    SiNodedotjs,
+} from "react-icons/si";
 
-  useEffect(() => {
-    // Generate random particles
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      speed: Math.random() * 0.5 + 0.1,
-      direction: Math.random() * 360
-    }));
-    setParticles(newParticles);
+export default function PortfolioBanner() {
+    const skills = [
+        { icon: <SiReact size={28} color="#61DBFB" />, name: "React" },
+        { icon: <SiLaravel size={28} color="#F9322C" />, name: "Laravel" },
+        {
+            icon: <SiJavascript size={28} color="#F0DB4F" />,
+            name: "JavaScript",
+        },
+        { icon: <SiPhp size={28} color="#8993be" />, name: "PHP" },
+        { icon: <SiNodedotjs size={28} color="#3C873A" />, name: "Node.js" },
+    ];
 
-    // Animate particles
-    const interval = setInterval(() => {
-      setParticles(prev => prev.map(particle => ({
-        ...particle,
-        x: (particle.x + Math.cos(particle.direction) * particle.speed) % 100,
-        y: (particle.y + Math.sin(particle.direction) * particle.speed) % 100
-      })));
-    }, 100);
 
-    return () => clearInterval(interval);
-  }, []);
+    const stats = [
+        { number: "50+", label: "Proyek Selesai", icon: "📊" },
+        { number: "3+", label: "Tahun Pengalaman", icon: "⚡" },
+        { number: "20+", label: "Client Puas", icon: "🎯" },
+        { number: "100%", label: "Komitmen", icon: "💎" }
+    ];
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100
-    });
-  };
+    return (
+        <div className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0">
+                {/* Floating orbs */}
+                <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute top-40 right-20 w-24 h-24 bg-purple-500/20 rounded-full blur-xl animate-bounce"></div>
+                <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-1/3 w-28 h-28 bg-cyan-500/15 rounded-full blur-xl animate-bounce"></div>
 
-  return (
-    <div 
-      className="relative h-screen w-full bg-black overflow-hidden"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)`
-          }}
-        />
-      </div>
+                {/* Grid pattern */}
+                <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"></div>
 
-      {/* Floating particles */}
-      {particles.map(particle => (
-        <div
-          key={particle.id}
-          className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-pulse"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            boxShadow: `0 0 ${particle.size * 2}px rgba(59, 130, 246, 0.5)`
-          }}
-        />
-      ))}
-
-      {/* Geometric shapes */}
-      <div className="absolute top-20 right-20 w-32 h-32 border border-blue-500/30 rotate-45 animate-spin"  style={{ animationDuration: '20s' }} />
-      <div className="absolute bottom-32 left-16 w-24 h-24 border-2 border-blue-400/20 rounded-full animate-bounce" style={{ animationDuration: '3s' }} />
-      <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-gradient-to-r from-blue-600/20 to-transparent rotate-12 animate-pulse" />
-
-      {/* Main content */}
-      <div className="absolute inset-0 flex items-center justify-between px-16">
-        {/* Left side - Text content */}
-        <div className="flex-1 max-w-2xl">
-          <div className="space-y-6">
-            {/* Glitch effect text */}
-            <div className="relative">
-              <h1 className="text-7xl font-black text-white tracking-tight leading-none">
-                DWI
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 animate-pulse">
-                  PRASETIA
-                </span>
-              </h1>
-              {/* Glitch layers */}
-              <h1 className="absolute top-0 left-0 text-7xl font-black text-blue-500/20 tracking-tight leading-none animate-ping"
-                  style={{ animationDuration: '2s' }}>
-                DWI
-                <span className="block">PRASETIA</span>
-              </h1>
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
             </div>
 
-            {/* Subtitle with typewriter effect */}
-            <div className="relative overflow-hidden">
-              <p className="text-xl text-gray-300 font-light max-w-lg leading-relaxed">
-                Crafting digital experiences that push boundaries and challenge conventions
-              </p>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent  translate-x-[-100%] animate-pulse"  style={{ animationDuration: '3s' }} />
-            </div>
+            <div className="relative max-w-7xl mx-auto px-4 py-20 lg:py-32">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Content */}
+                    <div className="text-white space-y-8">
+                        {/* Badge */}
+                        <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium">
+                            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            Available for Projects
+                        </div>
 
-            {/* CTA Buttons */}
-            <div className="flex gap-6 pt-8">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-none overflow-hidden hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105">
-                <span className="relative z-10">VIEW WORK</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
-              </button>
-              
-              <button className="group px-8 py-4 border-2 border-blue-500/50 text-blue-400  font-semibold hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-300 relative overflow-hidden">
-                <span className="relative z-10">CONTACT</span>
-                <div className="absolute inset-0 bg-blue-500/5 scale-x-0 group-hover:scale-x-100  transition-transform duration-300 origin-left" />
-              </button>
-            </div>
-          </div>
-        </div>
+                        {/* Main Heading */}
+                        <div className="space-y-4">
+                            <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+                                <span className="block text-white">Dwi</span>
+                                <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                    Prasetia
+                                </span>
+                            </h1>
+                            <div className="text-xl lg:text-2xl text-gray-300 space-y-2">
+                                <p className="typewriter">
+                                    Full Stack Developer
+                                </p>
+                                <p className="text-lg text-gray-400">
+                                    Passionate about creating digital
+                                    experiences that matter
+                                </p>
+                            </div>
+                        </div>
 
-        {/* Right side - Interactive element */}
-        <div className="flex-1 flex justify-center items-center">
-          <div className="relative">
-            {/* Main circle with glassmorphism */}
-            <div className="w-80 h-80 relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-blue-700/20  backdrop-blur-sm border border-blue-500/30 rounded-full animate-spin" style={{ animationDuration: '30s' }}>
-                <div className="absolute inset-8 bg-gradient-to-tl from-blue-600/10 to-transparent  backdrop-blur-md border border-blue-400/20 rounded-full" />
-              </div>
-              
-              {/* Inner rotating elements */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-40 h-40 border-2 border-blue-400/40 rounded-full animate-pulse">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full  animate-bounce shadow-lg shadow-blue-500/50" style={{ animationDuration: '2s' }} />
-                  </div>
+                        {/* Description */}
+                        <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
+                            Saya adalah seorang Full Stack Developer dengan
+                            passion untuk menciptakan solusi digital yang
+                            inovatif dan user-friendly. Berpengalaman dalam
+                            membangun aplikasi web modern dengan teknologi
+                            terdepan.
+                        </p>
+
+                        {/* CTA Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1">
+                                <span className="flex items-center justify-center">
+                                    Lihat Portofolio
+                                    <svg
+                                        className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                        />
+                                    </svg>
+                                </span>
+                            </button>
+                            <button className="px-8 py-4 border-2 border-white/30 rounded-xl font-semibold backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300 transform hover:-translate-y-1">
+                                Download CV
+                            </button>
+                        </div>
+
+                        {/* Social Links */}
+                        <div className="flex items-center space-x-6 pt-4">
+                            <span className="text-gray-400 text-sm font-medium">
+                                Follow me:
+                            </span>
+                            {["GitHub", "LinkedIn", "Twitter", "Instagram"].map(
+                                (social) => (
+                                    <a
+                                        key={social}
+                                        href="#"
+                                        className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg flex items-center justify-center hover:bg-white/20 hover:border-white/40 transition-all duration-300 group"
+                                    >
+                                        <span className="text-xs font-medium group-hover:scale-110 transition-transform duration-200">
+                                            {social.charAt(0)}
+                                        </span>
+                                    </a>
+                                )
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right Content */}
+                    <div className="space-y-8">
+                        {/* Profile Card */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-2xl">
+                            <div className="text-center mb-6">
+                                <div className="relative inline-block">
+                                    <div className="w-32 h-32 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-4xl font-bold text-white shadow-2xl">
+                                        DP
+                                    </div>
+                                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
+                                        <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Stats */}
+                            <div className="grid grid-cols-2 gap-4 mb-6">
+                                {stats.map((stat, index) => (
+                                    <div
+                                        key={index}
+                                        className="text-center p-3 bg-white/5 rounded-lg border border-white/10"
+                                    >
+                                        <div className="text-2xl mb-1">
+                                            {stat.icon}
+                                        </div>
+                                        <div className="text-2xl font-bold text-white">
+                                            {stat.number}
+                                        </div>
+                                        <div className="text-xs text-gray-300">
+                                            {stat.label}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Skills Section */}
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-2xl">
+                            <h3 className="text-white font-semibold mb-4 flex items-center">
+                                <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+                                Tech Stack
+                            </h3>
+                            <div className="flex flex-wrap gap-4">
+                                {skills.map((skill, index) => (
+                                    <div
+                                        key={index}
+                                        className="w-14 h-14 flex items-center justify-center bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300"
+                                        title={skill.name}
+                                    >
+                                        {skill.icon}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Quick Contact */}
+                        <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-md border border-blue-400/30 rounded-2xl p-6 shadow-2xl">
+                            <h3 className="text-white font-semibold mb-3">
+                                Let's Work Together
+                            </h3>
+                            <p className="text-gray-300 text-sm mb-4">
+                                Punya proyek menarik? Mari diskusikan bagaimana
+                                kita bisa berkolaborasi.
+                            </p>
+                            <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                                Get In Touch
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-              {/* Orbiting elements */}
-              <div className="absolute inset-0 animate-spin" style={{ animationDuration: '15s' }}>
-                <div className="absolute -top-2 left-1/2 w-4 h-4 bg-blue-400 rounded-full transform -translate-x-1/2 shadow-lg shadow-blue-400/50" />
-                <div className="absolute top-1/2 -right-2 w-3 h-3 bg-blue-500 rounded-full transform -translate-y-1/2 shadow-lg shadow-blue-500/50" />
-                <div className="absolute -bottom-2 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2 shadow-lg shadow-blue-600/50" />
-                <div className="absolute top-1/2 -left-2 w-3 h-3 bg-blue-400 rounded-full transform -translate-y-1/2 shadow-lg shadow-blue-400/50" />
-              </div>
+                {/* Scroll Indicator */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60">
+                    <div className="flex flex-col items-center animate-bounce">
+                        <span className="text-xs mb-2">Scroll Down</span>
+                        <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                            />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
-            {/* Floating text elements */}
-            <div className="absolute -top-8 -left-8 text-blue-400/60 font-mono text-sm animate-bounce" style={{ animationDuration: '3s', animationDelay: '0.5s' }}>
-              &lt;code/&gt;
-            </div>
-            <div className="absolute -bottom-8 -right-8 text-blue-500/60 font-mono text-sm animate-bounce" style={{ animationDuration: '3s', animationDelay: '1s' }}>
-              {'{design}'}
-            </div>
-          </div>
+            <style jsx>{`
+                .bg-grid-white\/\[0\.02\] {
+                    background-image: radial-gradient(
+                        circle,
+                        rgba(255, 255, 255, 0.02) 1px,
+                        transparent 1px
+                    );
+                }
+                .typewriter {
+                    border-right: 2px solid #3b82f6;
+                    animation: blink 1s infinite;
+                }
+                @keyframes blink {
+                    0%,
+                    50% {
+                        border-color: transparent;
+                    }
+                    51%,
+                    100% {
+                        border-color: #3b82f6;
+                    }
+                }
+            `}</style>
         </div>
-      </div>
-
-      {/* Bottom accent line */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60" />
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-blue-400/80">
-        <span className="text-sm font-light mb-2">SCROLL</span>
-        <div className="w-px h-12 bg-gradient-to-b from-blue-400 to-transparent animate-pulse" />
-      </div>
-    </div>
-  );
-};
-
-export default PortofolioBanner;
+    );
+}

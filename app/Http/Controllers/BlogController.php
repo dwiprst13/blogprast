@@ -17,7 +17,7 @@ class BlogController extends Controller
             ->latest() // Urutkan dari terbaru
             ->get();
 
-        return Inertia::render('User/Blogs/Index', ['blogs' => $blogs]);
+        return Inertia::render('User/Blog', ['blogs' => $blogs]);
     }
 
     public function newestblog()

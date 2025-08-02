@@ -1,8 +1,20 @@
+import { Head } from "@inertiajs/react";
+import MainLayout from "@/Layouts/MainLayout";
+import BlogCard from "@/Components/moleculs/BlogCard";
+import NewestBlog from "@/Components/organisms/NewestBlog";
+import ListBlog from "@/Components/organisms/ListBlog";
 
 
-export default function Index({ blogs }) {
+export default function Blog({ auth, blogs }) {
   return (
-    <div>
+    <>
+    <Head title="Daftar Postingan" />
+    <MainLayout auth={auth} blogs={blogs}>
+      <NewestBlog blogs={blogs} />
+      <ListBlog blogs={blogs} />
+      {/* <BlogCard blogs={blogs} /> */}
+      {/* Uncomment the following section if you want to display the blog posts in a list format */}
+      {/* <div>
       <h1>Daftar Postingan</h1>
 
       {blogs.map((post) => (
@@ -23,7 +35,6 @@ export default function Index({ blogs }) {
         </div>
       ))}
 
-      {/* Navigasi Pagination */}
       <div className="mt-6">
         {blogs.prev_page_url && (
           <button onClick={() => Inertia.visit(blogs.prev_page_url)}>Previous</button>
@@ -32,6 +43,8 @@ export default function Index({ blogs }) {
           <button onClick={() => Inertia.visit(blogs.next_page_url)}>Next</button>
         )}
       </div>
-    </div>
+    </div> */}
+    </MainLayout>
+    </>
   );
 }

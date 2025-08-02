@@ -12,7 +12,7 @@ export default function Portofolio({ auth }) {
                     <div className="relative w-full">
                         <Header auth={auth} className="flex justify-between" />
                         <main className="">
-                            <PortofolioBanner />
+                            <PortofolioBanner/>
                         </main>
                     </div>
                 </div>
