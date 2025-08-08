@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BlogResource\Pages;
 use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
+use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action as ActionsAction;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -14,7 +16,10 @@ use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ViewField;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -30,19 +35,17 @@ class BlogResource extends Resource
         $data['user_id'] = auth()->id();
         return $data;
     }
-    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-
                 Forms\Components\Section::make('Blog')
                     ->columns([
                         'sm' => 1,
                         'md' => 2,
                     ])
                     ->schema([
-
                         Forms\Components\TextInput::make('image_caption')
                             ->label('Keterangan Gambar')
                             ->nullable(),
@@ -56,9 +59,10 @@ class BlogResource extends Resource
                             ->keyLabel('Poin')
                             ->valueLabel('Deskripsi'),
                     ]),
+
                 Forms\Components\TextInput::make('title')
                     ->label('Judul')
-                    ->afterStateUpdated(function (Get $get, Set $set, ?string $state) { // Ubah type hinting
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $state) {
                         if (! $get('is_slug_changed_manually') && filled($state)) {
                             $set('slug', Str::slug($state));
                         }
@@ -67,20 +71,98 @@ class BlogResource extends Resource
                     ->required()
                     ->columnSpanFull(),
 
-                Forms\Components\TextInput::make('slug')
+                TextInput::make('slug')
                     ->label('Slug (URL)')
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->afterStateUpdated(function (Set $set) { // Ubah menjadi closure explicit
-                        $set('is_slug_changed_manually', true);
-                    }),
+                    ->suffixAction( // tombol di ujung kanan input
+                        ActionsAction::make('generateSlug')
+                            ->label('Buat')
+                            ->icon('heroicon-o-sparkles')
+                            ->action(function ($state, $get, $set) {
+                                $title = $get('site_name'); // ganti sesuai field sumber
+                                if ($title) {
+                                    $set('slug', Str::slug($title));
+                                    $set('is_slug_changed_manually', true);
+                                }
+                            })
+                    ),
 
-                Forms\Components\Toggle::make('is_slug_changed_manually')
+                Forms\Components\Actions::make([
+                    Forms\Components\Actions\Action::make('edit_excerpt')
+                        ->label('Edit Ringkasan')
+                        ->icon('heroicon-o-document-text')
+                        ->color('gray')
+                        ->modalHeading('Edit Ringkasan Blog')
+                        ->modalWidth('5xl')
+                        ->form([
+                            Forms\Components\RichEditor::make('excerpt')
+                                ->label('Ringkasan')
+                                ->nullable()
+                                ->toolbarButtons([
+                                    'bold',
+                                    'bulletList',
+                                    'italic',
+                                    'link',
+                                    'orderedList',
+                                    'strike',
+                                    'underline',
+                                ])
+                                ->columnSpanFull()
+                        ])
+                        ->action(function (array $data, Forms\Set $set): void {
+                            $set('excerpt', $data['excerpt']);
+                        })
+                        ->fillForm(function (Forms\Get $get): array {
+                            return [
+                                'excerpt' => $get('excerpt'),
+                            ];
+                        })
+                ])
+                    ->columnSpanFull(),
+
+                Toggle::make('is_slug_changed_manually')
                     ->hidden()
                     ->default(false),
-
-                Forms\Components\RichEditor::make('body')
-                    ->required(),
+                Forms\Components\Actions::make([
+                    Forms\Components\Actions\Action::make('edit_body')
+                        ->label('Edit Konten')
+                        ->icon('heroicon-o-pencil-square')
+                        ->color('primary')
+                        ->modalHeading('Edit Konten Blog')
+                        ->modalWidth('7xl')
+                        ->form([
+                            Forms\Components\RichEditor::make('body')
+                                ->label('Konten')
+                                ->required()
+                                ->toolbarButtons([
+                                    'attachFiles',
+                                    'blockquote',
+                                    'bold',
+                                    'bulletList',
+                                    'codeBlock',
+                                    'h2',
+                                    'h3',
+                                    'italic',
+                                    'link',
+                                    'orderedList',
+                                    'redo',
+                                    'strike',
+                                    'underline',
+                                    'undo',
+                                ])
+                                ->columnSpanFull()
+                        ])
+                        ->action(function (array $data, Forms\Set $set): void {
+                            $set('body', $data['body']);
+                        })
+                        ->fillForm(function (Forms\Get $get): array {
+                            return [
+                                'body' => $get('body'),
+                            ];
+                        })
+                ])
+                    ->columnSpanFull(),
 
                 Forms\Components\ViewField::make('thumbnail_preview')
                     ->view('filament.custom.thumbnail-preview')
@@ -89,15 +171,22 @@ class BlogResource extends Resource
                         'thumbnail' => $record?->thumbnail,
                     ]),
 
-
-                Forms\Components\FileUpload::make('thumbnail')
-                    ->image()
-                    ->directory('thumbnails')
-                    ->preserveFilenames()
-                    ->visibility('public'),
-
-                Forms\Components\Textarea::make('excerpt')
-                    ->nullable(),
+            Forms\Components\FileUpload::make('thumbnail')
+                ->image()
+                ->directory('thumbnails')
+                ->preserveFilenames()
+                ->visibility('public')
+                ->statePath('new_thumbnail') // Menggunakan path berbeda untuk file baru
+                ->afterStateUpdated(function ($state, Forms\Set $set) {
+                    if ($state) {
+                        $set('thumbnail', $state);
+                    }
+                })
+                ->helperText(
+                    fn($record) => $record && $record->thumbnail ?
+                        'File saat ini: ' . basename($record->thumbnail) . ' (Preview ditampilkan di samping). Upload file baru untuk mengganti.' :
+                        'Upload gambar thumbnail baru'
+                ),
 
                 Forms\Components\Toggle::make('published')
                     ->default(false),
@@ -114,6 +203,8 @@ class BlogResource extends Resource
                     ->multiple()
             ]);
     }
+
+
 
     public static function table(Table $table): Table
     {

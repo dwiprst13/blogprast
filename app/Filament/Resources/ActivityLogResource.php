@@ -72,7 +72,6 @@ class ActivityLogResource extends Resource
                         $properties = $record->properties->toArray();
                         if (empty($properties)) return '-';
 
-                        // Format khusus untuk IP dan User Agent
                         if (isset($properties['ip'])) {
                             return "IP: {$properties['ip']}";
                         }
