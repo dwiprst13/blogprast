@@ -1,12 +1,12 @@
 import MainLayout from "@/Layouts/MainLayout";
-import KontakForm from "./Part/KontakForm";
+import KontakSection from "./Part/KontakSection";
 
 
 export default function Kontak({ auth }) {
     return (
         <>
             <MainLayout auth={auth}>
-                <KontakForm />
+                <KontakSection />
             </MainLayout>
         </>
     );

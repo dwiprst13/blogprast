@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,6 +24,7 @@ Route::get('/profil', function () {
     return Inertia::render('User/Profile');
 })->middleware(['auth', 'verified'])->name('profil');
 
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('kontak', [KontakController::class, 'index'])->name('kontak');
