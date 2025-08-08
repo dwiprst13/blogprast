@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Vite;
+use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Blog;
 use App\Observers\BlogObserver;
@@ -24,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
+
 
         Inertia::share('auth', function () {
             $user = \Illuminate\Support\Facades\Auth::user();

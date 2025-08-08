@@ -24,24 +24,40 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nama')
                     ->required()
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('email')
+                    ->label('Email')
                     ->required()
                     ->email()
                     ->maxLength(255)
                     ->unique(User::class, 'email', ignoreRecord: true),
 
                 Forms\Components\TextInput::make('password')
+                    ->label('Password')
                     ->password()
-                    ->required(fn ($context) => $context === 'create')
+                    ->required(fn($context) => $context === 'create')
                     ->minLength(8)
-                    ->dehydrateStateUsing(fn ($state) => bcrypt($state))
-                    ->visible(fn ($context) => $context === 'create'),
+                    ->dehydrateStateUsing(fn($state) => bcrypt($state))
+                    ->visible(fn($context) => $context === 'create'),
 
-            ]);
+            Forms\Components\Toggle::make('role')
+                ->label('Admin')
+                ->helperText('Buat pengguna ini sebagai admin?')
+                ->required()
+                ->afterStateHydrated(function ($set, $state) {
+                    $set('role', $state === 'Admin');
+                })
+                ->dehydrateStateUsing(function ($state) {
+                    return $state ? 'Admin' : 'User';
+                })
+                ->default(false) 
+
+        ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -54,10 +70,12 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('role')
+                    ->searchable()
+                    ->sortable(),
             ])
-            ->filters([
-                
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

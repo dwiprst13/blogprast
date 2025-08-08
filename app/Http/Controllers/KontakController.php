@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Contact;
 use Inertia\Inertia;
 
 class KontakController extends Controller
@@ -37,5 +38,15 @@ class KontakController extends Controller
         ]);
 
         return redirect()->route('kontak')->with('success', 'Your message has been sent successfully!');
+
+        Contact::create($validated);
+
+        activity()
+            ->causedBy(auth()->user())
+            ->withProperties([
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ])
+            ->log('Mengirim pesan kontak');
     }
 }
