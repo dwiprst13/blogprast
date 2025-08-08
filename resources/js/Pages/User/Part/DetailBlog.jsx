@@ -158,7 +158,7 @@ export default function DetailBlog({ blog }) {
                 )}
 
                 {/* Article Content */}
-                <div className="prose prose-lg prose-gray dark:prose-invert max-w-none mb-8">
+                <div className="prose prose-lg prose-gray dark:prose-invert max-w-none mb-8 text-justify">
                     <div
                         className="leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: blog.body }}

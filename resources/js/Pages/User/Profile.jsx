@@ -3,16 +3,11 @@ import { Head } from '@inertiajs/react';
 import UpdatePasswordForm from '../Profile/Partials/UpdatePasswordForm';
 import DeleteUserForm from '../Profile/Partials/DeleteUserForm';
 import UpdateProfileInformationForm from '../Profile/Partials/UpdateProfileInformationForm';
+import MainLayout from '@/Layouts/MainLayout';
 
-export default function Profile({mustVerifyEmail, status }) {
+export default function Profile({auth, mustVerifyEmail, status }) {
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Profile
-                </h2>
-            }
-        >
+        <MainLayout auth={auth}>
             <Head title="Profile" />
 
             <div className="py-12">
@@ -27,7 +22,6 @@ export default function Profile({mustVerifyEmail, status }) {
 
                     <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800">
                         <UpdatePasswordForm className="max-w-xl" />
-                        
                     </div>
 
                     <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800">
@@ -35,6 +29,6 @@ export default function Profile({mustVerifyEmail, status }) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </MainLayout>
     );
 }
