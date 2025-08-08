@@ -36,9 +36,6 @@ class KontakController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        // Here you can handle the form submission, e.g., send an email or save to the database
-
-        // Redirect back with a success message
         return redirect()->route('kontak')->with('success', 'Your message has been sent successfully!');
     }
 }

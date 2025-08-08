@@ -28,9 +28,9 @@ class TagResource extends Resource
                     ->maxLength(255)
                     ->unique(Tag::class, 'name', ignoreRecord: true),
                 
-                Forms\Components\Textarea::make('description')
+                Forms\Components\Textarea::make('slug')
                     ->nullable()
-                    ->maxLength(500),
+                    ->maxLength(255),
             ])->columns([
                 'sm' => 1,
                 'md' => 2,
@@ -49,10 +49,6 @@ class TagResource extends Resource
                     ->sortable()
                     ->searchable(),
                 
-                Tables\Columns\TextColumn::make('description')
-                    ->limit(50)
-                    ->sortable()
-                    ->searchable(),
                 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

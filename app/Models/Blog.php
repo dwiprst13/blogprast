@@ -17,10 +17,14 @@ class Blog extends Model
         'user_id',
         'category_id',
         'tags',
+        'image_caption',
+        'image_source',
+        'key_points',
     ];
     protected $casts = [
         'published' => 'boolean',
         'published_at' => 'datetime',
+        'key_points' => 'array', // Assuming key_points is a JSON array
     ];
     public function user()
     {

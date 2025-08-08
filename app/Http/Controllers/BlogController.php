@@ -39,19 +39,24 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:posts,slug',
-            'exceprt' => 'nullable|string',
+            'slug' => 'required|string|max:255|unique:blogs,slug', // ✅ Perbaiki table name
+            'excerpt' => 'nullable|string',
             'body' => 'required|string',
             'thumbnail' => 'nullable|image|max:2048',
             'published' => 'boolean',
             'published_at' => 'nullable|date',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'array',
+            'image_caption' => 'nullable|string|max:255',
+            'image_source' => 'nullable|string|max:255',
+            'key_points' => 'nullable|array',
         ]);
 
-        $post = Blog::create($request->all());
+        $validated['user_id'] = auth()->id();
+
+        $post = Blog::create($validated);
 
         if ($request->has('tags')) {
             $post->tags()->sync($request->input('tags'));
@@ -59,6 +64,7 @@ class BlogController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
+
 
     public function show($slug)
     {

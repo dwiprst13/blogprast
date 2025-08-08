@@ -1,4 +1,5 @@
 import React from "react";
+import { HiChevronDoubleUp } from "react-icons/hi";
 
 export default function ScrollToTop() {
     const [isVisible, setIsVisible] = React.useState(false);
@@ -27,7 +28,7 @@ export default function ScrollToTop() {
             className="fixed bottom-4 right-4 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-lg font-semibold hover:animate-bounce"
             aria-label="Scroll to top"
         >
-            ↑
+            <HiChevronDoubleUp />
         </button>
     );
 }
