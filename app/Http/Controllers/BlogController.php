@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,8 +17,15 @@ class BlogController extends Controller
             ->latest()
             ->get();
 
-        return Inertia::render('User/Blog', [
-            'blogs' => $blogs
+        $relatedblogs = Blog::with(['user', 'tags', 'category'])
+            ->where('published', true)
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return Inertia::render('Blog/Blog', [
+            'blogs' => $blogs,
+            'relatedblogs' => $relatedblogs ?? [],
         ]);
     }
 
@@ -29,8 +37,9 @@ class BlogController extends Controller
             ->take(5) // 
             ->get();
 
-        return Inertia::render('User/Blogs/NewestBlog', ['blogs' => $blogs]);
+        return Inertia::render('Blog/NewestBlog', ['blogs' => $blogs]);
     }
+
 
     public function create()
     {
@@ -68,7 +77,10 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        $blog = Blog::with('author')->where('slug', $slug)->firstOrFail();
+        $blog = Blog::with(['author', 'category', 'tags'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+
 
         $comments = Comment::with(['author', 'replies.author'])
             ->where('blog_id', $blog->id)

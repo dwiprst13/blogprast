@@ -1,0 +1,134 @@
+.prose h2 {
+  @apply text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4;
+}
+
+pre {
+    background: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 100%);
+    border: 1px solid #3b4252;
+    border-radius: 12px;
+    padding: 45px 20px 20px 20px;
+    margin: 24px 0;
+    overflow-x: auto;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    color: #e5e7eb;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+pre::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    height: 35px;
+    background: linear-gradient(90deg, #3b4252 0%, #434c5e 100%);
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid #4c566a;
+}
+
+pre::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff5f56;
+    box-shadow: 
+        20px 0 0 #ffbd2e,
+        40px 0 0 #27ca3f;
+}
+
+/* Custom scrollbar untuk dark theme */
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+@media (max-width: 768px) {
+    pre {
+        font-size: 12px;
+        padding: 35px 16px 16px 16px;
+        margin: 16px 0;
+        border-radius: 8px;
+    }
+    
+    pre::before {
+        height: 30px;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    pre::after {
+        top: 9px;
+        left: 10px;
+        width: 10px;
+        height: 10px;
+        box-shadow: 
+            16px 0 0 #ffbd2e,
+            32px 0 0 #27ca3f;
+    }
+}
+
+@media (max-width: 480px) {
+    pre {
+        font-size: 11px;
+        margin: 12px -10px;
+        border-radius: 0;
+    }
+}
+
+@media print {
+    pre {
+        background: #f5f5f5 !important;
+        color: #000 !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        padding: 20px !important;
+    }
+    
+    pre::before,
+    pre::after {
+        display: none !important;
+    }
+}
+
+.keyword { color: #569cd6; font-weight: 500; } /* blue */
+        .string { color: #ce9178; } /* orange */
+        .comment { color: #6a9955; font-style: italic; } /* green */
+        .number { color: #b5cea8; } /* light green */
+        .function { color: #dcdcaa; } /* yellow */
+        .class { color: #4ec9b0; } /* cyan */
+        .variable { color: #9cdcfe; } /* light blue */
+        .operator { color: #d4d4d4; } /* white */
+        .punctuation { color: #d4d4d4; } /* white */
+        .tag { color: #569cd6; } /* blue for HTML tags */
+        .attribute { color: #92c5f8; } /* light blue for attributes */
+        .value { color: #ce9178; } /* orange for attribute values */
+        .php-tag { color: #569cd6; font-weight: bold; } /* PHP open/close tags */
+        .constant { color: #4fc1ff; }
+        .type { color: #4ec9b0; }
+
+        /* JavaScript specific */
+        .js-keyword { color: #c586c0; } /* purple for const, let, var */
+        .js-function { color: #dcdcaa; }
+        .js-method { color: #dcdcaa; }

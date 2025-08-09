@@ -1,5 +1,5 @@
 import MainLayout from "@/Layouts/MainLayout";
-import DetailBlog from "./Part/DetailBlog";
+import DetailBlog from "../Blog/DetailBlog";
 import CommentSection from "./Part/Komentar";
 
 export default function Detail({ auth, blog, comments }) {

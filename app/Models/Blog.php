@@ -26,6 +26,15 @@ class Blog extends Model
         'published_at' => 'datetime',
         'key_points' => 'array', // Assuming key_points is a JSON array
     ];
+    protected static function booted()
+    {
+        static::saving(function ($model) {
+            if (!empty($model->new_thumbnail)) {
+                $model->thumbnail = $model->new_thumbnail;
+            }
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

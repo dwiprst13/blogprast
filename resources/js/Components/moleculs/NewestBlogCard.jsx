@@ -44,14 +44,17 @@ export default function NewestBlogCard({ post }) {
 
                 {/* Excerpt */}
                 <p className="text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3 mb-4 sm:mb-5 leading-relaxed text-sm sm:text-base">
-                    {post.excerpt}
+                    {post.excerpt.replace(/<[^>]*>?/gm, "")}
                 </p>
 
                 {/* Footer with actions */}
                 <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
                     {/* Read More Button */}
-                    <button className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm sm:text-base transition-colors duration-200 group/btn"
-                        onClick={() => window.location.href = `/blog/${post.slug}`}
+                    <button
+                        className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm sm:text-base transition-colors duration-200 group/btn"
+                        onClick={() =>
+                            (window.location.href = `/blog/${post.slug}`)
+                        }
                     >
                         <span className="hidden sm:inline">
                             Baca Selengkapnya
