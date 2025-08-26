@@ -172,7 +172,7 @@ export default function KontakSection() {
                                             href={info.link}
                                             className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 group"
                                         >
-                                            <div className="flex-shrink-0 p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors duration-200">
+                                            <div className="flex-shrink-0 p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-orange-600 dark:text-orange-400 group-hover:bg-blue-200 dark:group-hover:bg-orange-900/50 transition-colors duration-200">
                                                 {info.icon}
                                             </div>
                                             <div>

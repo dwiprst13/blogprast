@@ -39,9 +39,9 @@ export default function DetailBlog({ blog, relatedblogs }) {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white">
+        <div className="min-h-screen bg-gray-50 dark:bg-black dark:text-white">
             {/* Header Navigation */}
-            <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
+            <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <button
                         onClick={() => (window.location.href = "/blog")}
@@ -64,7 +64,7 @@ export default function DetailBlog({ blog, relatedblogs }) {
                         {/* Category Badge */}
                         {blog.category && (
                             <div className="mb-4">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300">
                                     {blog.category.name}
                                 </span>
                             </div>

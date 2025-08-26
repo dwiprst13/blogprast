@@ -9,7 +9,7 @@ export default function NewestBlog({ blogs }) {
                         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                             Postingan Terbaru
                         </h1>
-                        <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full">
+                        <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full">
                         </div>
                     </div>
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

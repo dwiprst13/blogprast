@@ -85,7 +85,7 @@ export default function Footer() {
                             <span className="text-2xl font-bold text-gray-900 dark:text-white">
                                 Prast
                             </span>
-                            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                            <span className="text-2xl font-bold bg-orange-600 bg-clip-text text-transparent">
                                 Blog
                             </span>
                         </div>
@@ -104,9 +104,9 @@ export default function Footer() {
                                 <input
                                     type="email"
                                     placeholder="Email Anda..."
-                                    className="flex-1 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                    className="flex-1 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
                                 />
-                                <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-r-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium">
+                                <button className="px-4 py-2 bg-gradient-to-r from-orange-600 to-yellow-600 text-white rounded-r-lg hover:from-orange-700 hover:to-yellow-700 transition-all duration-200 text-sm font-medium">
                                     Subscribe
                                 </button>
                             </div>
@@ -123,7 +123,7 @@ export default function Footer() {
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 text-sm"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -142,7 +142,7 @@ export default function Footer() {
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 text-sm"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 text-sm"
                                     >
                                         {link.name}
                                     </Link>

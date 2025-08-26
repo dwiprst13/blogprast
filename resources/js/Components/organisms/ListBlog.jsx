@@ -9,7 +9,7 @@ export default function ListBlog({ blogs }) {
                         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                             Daftar Postingan
                         </h1>
-                        <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+                        <div className="w-16 h-1 bg-orange-600 rounded-full"></div>
                     </div>
 
                     <div className="space-y-4">

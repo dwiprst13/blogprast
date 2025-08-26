@@ -33,7 +33,7 @@ export default function Header({ auth, className = "", ...props }) {
 
     return (
         <>
-            <header className="sticky top-0 z-30 h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+            <header className="sticky top-0 z-30 h-16 bg-white/80 dark:bg-black backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
                 <div className="h-full max-w-7xl mx-auto px-4 flex items-center justify-between">
                     {/* Logo */}
                     <Link
@@ -43,7 +43,7 @@ export default function Header({ auth, className = "", ...props }) {
                         <span className="text-gray-900 dark:text-white">
                             Prast
                         </span>
-                        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        <span className="bg-orange-600 bg-clip-text text-transparent">
                             Blog
                         </span>
                     </Link>

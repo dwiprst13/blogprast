@@ -7,10 +7,8 @@ export default function BlogCard({ blogs }) {
                     className="group bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg dark:shadow-gray-900/25 transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
                 >
                     <div className="flex flex-col sm:flex-row">
-                        {/* Image Section */}
                         <div className="sm:w-48 sm:flex-shrink-0">
-                            <div className="h-48 sm:h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 relative overflow-hidden">
-                                {/* Placeholder untuk gambar - nanti bisa diganti dengan <img> */}
+                            <div className="h-48 sm:h-full bg-orange-600 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                                     <svg
                                         className="w-12 h-12 text-white/80"
@@ -41,7 +39,7 @@ export default function BlogCard({ blogs }) {
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center space-x-3 text-sm text-gray-500 dark:text-gray-400">
                                     <div className="flex items-center space-x-1">
-                                        <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                                        <div className="w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
                                             {post.user.name
                                                 .charAt(0)
                                                 .toUpperCase()}

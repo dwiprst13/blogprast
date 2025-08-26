@@ -7,18 +7,18 @@ export default function NewestBlogCard({ post }) {
             className="group w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-2 border border-gray-200 dark:border-gray-700 overflow-hidden"
         >
             {/* Top gradient bar */}
-            <div className="h-1.5 sm:h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <div className="h-1.5 sm:h-2 bg-orange-600"></div>
 
             <div className="p-4 sm:p-5 lg:p-6">
                 {/* Title */}
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2 leading-tight">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors duration-200 line-clamp-2 leading-tight">
                     {post.title}
                 </h2>
 
                 {/* Author info */}
                 <div className="flex items-center justify-between mb-3 sm:mb-4 text-sm">
                     <div className="flex items-center space-x-2 sm:space-x-3">
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-gradient-to-r from-orange-700 to-yellow-500 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
                             {post.user.name.charAt(0).toUpperCase()}
                         </div>
                         <span className="text-gray-600 dark:text-gray-300 font-medium text-sm sm:text-base">
@@ -35,7 +35,7 @@ export default function NewestBlogCard({ post }) {
                                 key={tag.id}
                                 className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-md text-xs sm:text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
                             >
-                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-current rounded-full mr-1 sm:mr-1.5"></span>
+                                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-600 rounded-full mr-1 sm:mr-1.5"></span>
                                 {tag.name}
                             </span>
                         ))}
@@ -49,9 +49,8 @@ export default function NewestBlogCard({ post }) {
 
                 {/* Footer with actions */}
                 <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
-                    {/* Read More Button */}
                     <button
-                        className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm sm:text-base transition-colors duration-200 group/btn"
+                        className="inline-flex items-center text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium text-sm sm:text-base transition-colors duration-200 group/btn"
                         onClick={() =>
                             (window.location.href = `/blog/${post.slug}`)
                         }
