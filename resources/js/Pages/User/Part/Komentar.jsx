@@ -61,7 +61,7 @@ function Comment({ comment, onReply, onLike, onEdit, onDelete, depth = 0 }) {
                                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                                 />
                             ) : (
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-orange-700 to-yellow-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                                     {comment.author.name
                                         .charAt(0)
                                         .toUpperCase()}
@@ -242,7 +242,7 @@ function CommentForm({
                     onChange={(e) => setContent(e.target.value)}
                     placeholder={placeholder}
                     rows={isReply ? 3 : 4}
-                    className="w-full p-3 sm:p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                    className="w-full p-3 sm:p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 resize-none"
                     maxLength={500}
                     onKeyDown={(e) => {
                         if (e.key === "Enter" && e.ctrlKey) {
@@ -273,7 +273,7 @@ function CommentForm({
                     <button
                         onClick={handleSubmit}
                         disabled={!content.trim() || isSubmitting}
-                        className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium rounded-lg transition-all duration-200 disabled:cursor-not-allowed"
+                        className="inline-flex items-center px-4 py-2 bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 text-white text-sm font-medium rounded-lg transition-all duration-200 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? (
                             <>

@@ -161,7 +161,7 @@ export default function DetailBlog({ blog, relatedblogs }) {
                     />
 
                     {/* Author Info */}
-                    <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg">
+                    <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-950 dark:to-gray-900 rounded-2xl shadow-lg">
                         <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
                                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -192,7 +192,7 @@ export default function DetailBlog({ blog, relatedblogs }) {
                     </div>
 
                     {/* Publication Status (for admin/editor view) */}
-                    {!blog.published && (
+                    {/* {!blog.published && (
                         <div className="mb-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
                             <div className="flex items-center">
                                 <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></div>
@@ -201,11 +201,11 @@ export default function DetailBlog({ blog, relatedblogs }) {
                                 </span>
                             </div>
                         </div>
-                    )}
+                    )} */}
                 </article>
                 <div className="md:col-span-4 py-8 px-6">
                     {blog.tags && blog.tags.length > 0 && (
-                        <div className="mb-8 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <div className="mb-8 p-6 bg-white dark:bg-gray-950 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
                             <div className="flex items-center mb-4">
                                 <Tag className="w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
                                 <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -216,7 +216,7 @@ export default function DetailBlog({ blog, relatedblogs }) {
                                 {blog.tags.map((tag) => (
                                     <span
                                         key={tag.id}
-                                        className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:shadow-md transition-all duration-200 cursor-pointer"
+                                        className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-gradient-to-r from-orange-50 to-purple-50 dark:from-orange-900/20 dark:to-yellow-900/20 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800 hover:shadow-md transition-all duration-200 cursor-pointer"
                                     >
                                         <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
                                         {tag.name}
