@@ -1,7 +1,7 @@
 export default function KontakForm( { data, setData, errors, processing, submit, isSubmitted }) {
     return (
         <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-black/80 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-900 dark:border-b-orange-600 dark:border-r-orange-600 dark:border-b-2 dark:border-r-2">
                 <div className="mb-8">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                         Kirim Pesan
@@ -49,7 +49,7 @@ export default function KontakForm( { data, setData, errors, processing, submit,
                                 onChange={(e) =>
                                     setData("name", e.target.value)
                                 }
-                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                                 placeholder="Masukkan nama lengkap Anda"
                                 required
                             />
@@ -71,7 +71,7 @@ export default function KontakForm( { data, setData, errors, processing, submit,
                                 onChange={(e) =>
                                     setData("email", e.target.value)
                                 }
-                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                                 placeholder="email@example.com"
                                 required
                             />
@@ -92,7 +92,7 @@ export default function KontakForm( { data, setData, errors, processing, submit,
                             type="text"
                             value={data.subject}
                             onChange={(e) => setData("subject", e.target.value)}
-                            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+                            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                             placeholder="Topik pesan Anda"
                             required
                         />
@@ -112,7 +112,7 @@ export default function KontakForm( { data, setData, errors, processing, submit,
                             rows={6}
                             value={data.message}
                             onChange={(e) => setData("message", e.target.value)}
-                            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white resize-none"
+                            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white resize-none"
                             placeholder="Tulis pesan Anda di sini..."
                             required
                         />
@@ -127,7 +127,7 @@ export default function KontakForm( { data, setData, errors, processing, submit,
                     <button
                         type="submit"
                         disabled={processing}
-                        className="w-full md:w-auto px-8 py-3 bg-gradient-to-br from-orange-700 to-orange-400 text-white font-medium rounded-lg hover:from-orange-700 hover:to-yellow-500 focus:ring-4 focus:ring-blue-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                        className="w-full md:w-auto px-8 py-3 bg-gradient-to-br from-orange-700 to-orange-400 text-white font-medium rounded-lg hover:from-orange-700 hover:to-yellow-500 focus:ring-4 focus:ring-orange-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                     >
                         {processing ? (
                             <>

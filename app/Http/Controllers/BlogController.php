@@ -50,7 +50,7 @@ class BlogController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:blogs,slug', // ✅ Perbaiki table name
+            'slug' => 'required|string|max:255|unique:blogs,slug', 
             'excerpt' => 'nullable|string',
             'body' => 'required|string',
             'thumbnail' => 'nullable|image|max:2048',

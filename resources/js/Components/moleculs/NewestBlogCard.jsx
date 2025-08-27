@@ -1,22 +1,31 @@
 import React from "react";
 
 export default function NewestBlogCard({ post }) {
+        const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString("id-ID", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    };
+
     return (
         <article
             key={post.id}
-            className="group w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-2 border border-gray-200 dark:border-gray-700 overflow-hidden"
+            className="group w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto bg-white dark:bg-gray-900/30 rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-2 border border-gray-200 dark:border-gray-700 overflow-hidden"
         >
             {/* Top gradient bar */}
             <div className="h-1.5 sm:h-2 bg-orange-600"></div>
 
             <div className="p-4 sm:p-5 lg:p-6">
                 {/* Title */}
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors duration-200 line-clamp-2 leading-tight">
+                <h2 className=" text-lg sm:text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-4 group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors duration-200 line-clamp-2 leading-tight">
                     {post.title}
                 </h2>
 
                 {/* Author info */}
-                <div className="flex items-center justify-between mb-3 sm:mb-4 text-sm">
+                <div className="flex items-center justify-between mb-2 sm:mb-4 text-sm">
                     <div className="flex items-center space-x-2 sm:space-x-3">
                         <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-gradient-to-r from-orange-700 to-yellow-500 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
                             {post.user.name.charAt(0).toUpperCase()}
@@ -24,11 +33,15 @@ export default function NewestBlogCard({ post }) {
                         <span className="text-gray-600 dark:text-gray-300 font-medium text-sm sm:text-base">
                             {post.user.name}
                         </span>
+                        <p className="text-amber-300">|</p>
+                        <div className="text-gray-300">
+                            <span>{formatDate(post.published_at)}</span>
+                        </div>
                     </div>
                 </div>
 
                 {/* Tags */}
-                <div className="mb-3 sm:mb-4">
+                <div className="mb-2 sm:mb-4">
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {post.tags.map((tag) => (
                             <span
@@ -43,9 +56,9 @@ export default function NewestBlogCard({ post }) {
                 </div>
 
                 {/* Excerpt */}
-                <p className="text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3 mb-4 sm:mb-5 leading-relaxed text-sm sm:text-base">
+                {/* <p className="text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3 mb-4 sm:mb-5 leading-relaxed text-sm sm:text-base">
                     {post.excerpt.replace(/<[^>]*>?/gm, "")}
-                </p>
+                </p> */}
 
                 {/* Footer with actions */}
                 <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">

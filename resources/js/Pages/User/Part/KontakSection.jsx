@@ -142,7 +142,7 @@ export default function KontakSection() {
         <>
             <Head title="Kontak" />
 
-            <div className="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+            <div className="bg-gray-50 dark:bg-black min-h-screen transition-colors duration-300">
                 {/* Hero Section */}
                 <KontakHeroSection />
 
@@ -161,7 +161,7 @@ export default function KontakSection() {
                         {/* Contact Info & Social */}
                         <div className="space-y-8">
                             {/* Contact Information */}
-                            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
+                            <div className="bg-white dark:bg-black/80 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-900 dark:border-b-orange-600 dark:border-r-orange-600 dark:border-b-2 dark:border-r-2">
                                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                                     Informasi Kontak
                                 </h3>
@@ -189,7 +189,7 @@ export default function KontakSection() {
                             </div>
 
                             {/* Social Media */}
-                            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700">
+                            <div className="bg-white dark:bg-black/80 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-900 dark:border-b-orange-600 dark:border-r-orange-600 dark:border-b-2 dark:border-r-2">
                                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                                     Temukan Saya Di
                                 </h3>

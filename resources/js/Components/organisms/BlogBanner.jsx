@@ -1,7 +1,7 @@
 export default function BlogBanner() {
     return (
         <>
-            <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center transition-colors duration-300">
+            <div className="bg-gray-50 dark:bg-black min-h-screen flex items-center transition-colors duration-300">
                 <div className="mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center relative">
                     <div className="relative z-10">
                         <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-orange-900/30 dark:to-yellow-900/30 text-orange-800 dark:text-orange-300 text-sm font-medium mb-6 border border-orange-200 dark:border-orange-800">

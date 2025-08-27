@@ -49,7 +49,7 @@ function Comment({ comment, onReply, onLike, onEdit, onDelete, depth = 0 }) {
                     : ""
             }`}
         >
-            <div className="bg-white dark:bg-gray-900 rounded-lg p-4 sm:p-6 mb-4 transition-all duration-200 hover:shadow-md">
+            <div className="bg-white dark:bg-black rounded-lg p-4 sm:p-6 mb-4 transition-all duration-200 hover:shadow-md">
                 {/* Comment Header */}
                 <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-3">
@@ -387,7 +387,7 @@ export default function CommentSection({
     }, 0);
 
     return (
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 sm:p-8">
+        <div className="bg-white dark:bg-black rounded-2xl shadow-lg p-6 sm:p-8">
             {/* Section Header */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center space-x-3">

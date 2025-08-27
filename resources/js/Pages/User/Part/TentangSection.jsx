@@ -7,7 +7,7 @@ export default function TentangSection() {
     return (
         <div className="relative overflow-hidden">
 
-            <div className="relative bg-gray-50 dark:bg-gray-900 min-h-screen backdrop-blur-sm shadow-xl rounded-2xl p-8 transition-all duration-500 ">
+            <div className="relative bg-gray-50 dark:bg-black min-h-screen backdrop-blur-sm shadow-xl rounded-2xl p-8 transition-all duration-500 ">
                 {/* Header with icon */}
                 <div className="flex items-center mb-6">
                     <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
